@@ -186,6 +186,14 @@ for iter in range(1, n_iters + 1):
 
 # ==================================================================================
 # predict
+def evaluate(line_tensor):
+    hidden = rnn.initHidden()
+
+    for i in range(line_tensor.size()[0]):
+        output, hidden = rnn(line_tensor[i], hidden)
+
+    return output
+
 def predict(input_line, n_predictions=3):
     print('\n> %s' % input_line)
     with torch.no_grad():
